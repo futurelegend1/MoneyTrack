@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 function GetStarted() {
+  const naviaget = useNavigate();
+  const handleGetStartedClick = () => {
+    naviaget("/login");
+  }
+
   return (
     <section id="get-started" className="text-center py-24">
       <div className="max-w-4xl mx-auto">
@@ -7,7 +14,7 @@ function GetStarted() {
           Track your spending, manage your budget, and build better financial
           habits — all in one place.
         </p>
-          <button className="mt-6 bg-emerald-400 hover:bg-emerald-600 text-white px-10 py-4 rounded-lg text-lg md:text-2xl hover:scale-105 transition">Get Started Free</button>
+          <button className="mt-6 bg-emerald-400 hover:bg-emerald-600 text-white px-10 py-4 rounded-lg text-lg md:text-2xl hover:scale-105 transition" onClick={handleGetStartedClick}>Get Started Free</button>
       </div>
     </section>
   );

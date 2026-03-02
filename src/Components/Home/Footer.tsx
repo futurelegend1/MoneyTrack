@@ -21,8 +21,8 @@ function Footer() {
       id="contact"
       className="bg-slate-950 border-t border-slate-800 text-slate-400"
     >
-      <div className="max-w-7xl mx-auto py-26">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-15">
+      <div className="max-w-7xl mx-auto mx-5 py-26">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:ml-0 ml-8 gap-15">
           {/* Logo + Description */}
           <div>
             <div className="flex items-center gap-2 mb-4">

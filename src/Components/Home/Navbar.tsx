@@ -2,29 +2,17 @@ import IconMoneyTrack from "../../assets/IconMoneyTrack";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({scrollTo}: {scrollTo: (id: string) => void}) {
   const [phoneMenuOpen, setPhoneMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    // Get navbar height
-    const navbar = document.querySelector("nav");
-    const navbarHeight = navbar?.getBoundingClientRect().height || 0;
-
-    // Calculate top position
-    const top =
-      element.getBoundingClientRect().top + window.scrollY - navbarHeight;
-
-    window.scrollTo({ top, behavior: "smooth" });
-
-    setPhoneMenuOpen(false);
-  };
-
   const handleSignInClicks = () => {
     navigate("/login");
+  }
+
+  const handleScrollTo = (id: string) => {
+    scrollTo(id);
+    setPhoneMenuOpen(false);
   }
 
   return (
@@ -32,7 +20,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto relative flex justify-between items-center py-20 px-6 h-16">
         <div
           className="flex items-center gap-2 cursor-pointer"
-          onClick={() => scrollTo("hero")}
+          onClick={() => handleScrollTo("hero")}
         >
           <IconMoneyTrack className="w-15 h-15" />
           <span className="text-3xl font-semibold text-emerald-400">
@@ -43,25 +31,25 @@ function Navbar() {
         <ul className="hidden lg:flex items-center gap-10 text-slate-300 text-xl absolute left-1/2 -translate-x-1/2">
           <li
             className="hover:text-white transition cursor-pointer"
-            onClick={() => scrollTo("about")}
+            onClick={() => handleScrollTo("about")}
           >
             About
           </li>
           <li
             className="hover:text-white transition cursor-pointer"
-            onClick={() => scrollTo("features")}
+            onClick={() => handleScrollTo("features")}
           >
             Features
           </li>
           <li
             className="hover:text-white transition cursor-pointer"
-            onClick={() => scrollTo("get-started")}
+            onClick={() => handleScrollTo("get-started")}
           >
             Get Started
           </li>
           <li
             className="hover:text-white transition cursor-pointer"
-            onClick={() => scrollTo("contact")}
+            onClick={() => handleScrollTo("contact")}
           >
             Contact
           </li>
@@ -100,25 +88,25 @@ function Navbar() {
       {phoneMenuOpen && (
         <ul className="lg:hidden bg-slate-900 border-t border-slate-800 px-6 py-6 space-y-6 text-lg">
           <li
-            onClick={() => scrollTo("about")}
+            onClick={() => handleScrollTo("about")}
             className="cursor-pointer hover:text-white"
           >
             About
           </li>
           <li
-            onClick={() => scrollTo("features")}
+            onClick={() => handleScrollTo("features")}
             className="cursor-pointer hover:text-white"
           >
             Features
           </li>
           <li
-            onClick={() => scrollTo("contact")}
+            onClick={() => handleScrollTo("contact")}
             className="cursor-pointer hover:text-white"
           >
             Contact
           </li>
           <li
-            onClick={() => scrollTo("get-started")}
+            onClick={() => handleScrollTo("get-started")}
             className="cursor-pointer hover:text-white"
           >
             Get Started

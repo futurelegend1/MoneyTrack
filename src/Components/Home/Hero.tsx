@@ -1,4 +1,12 @@
-function Hero() {
+import { useNavigate } from "react-router-dom";
+
+function Hero({scrollTo}: {scrollTo: (id: string) => void}) {
+  const navigate = useNavigate();
+  const handleSignInClicks = () => {
+    navigate("/login");
+  }
+
+
   return (
     <section id="hero" className="text-slate-200">
       <div className="max-w-7xl min-h-[calc(100vh-20rem)] mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
@@ -15,8 +23,8 @@ function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl px-8 py-3 text-xl transition duration-200 hover:-translate-y-0.5">Get Started</button>
-            <button className="bg-gray-800 hover:bg-gray-900 border-2 border-slate-700 hover:border-slate-500 text-slate-300 px-8 py-3 rounded-xl text-xl transition duration-200 hover:-translate-y-0.5">Learn More</button>
+            <button className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl px-8 py-3 text-xl transition duration-200 hover:-translate-y-0.5" onClick={handleSignInClicks}>Get Started</button>
+            <button className="bg-gray-800 hover:bg-gray-900 border-2 border-slate-700 hover:border-slate-500 text-slate-300 px-8 py-3 rounded-xl text-xl transition duration-200 hover:-translate-y-0.5" onClick={()=>scrollTo("about")}>Learn More</button>
           </div>
         </div>
 
