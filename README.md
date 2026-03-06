@@ -22,16 +22,19 @@ Follow these steps to set up the project locally:
 
 ```bash
 git clone https://github.com/futurelegend1/MoneyTrack
+```
 
 2. Navigate to the project directory
 
 ```bash
 cd MoneyTrack
+```
 
 3. Install the project dependencies
 
 ```bash
 npm install
+```
 
 ## Execution Instructions
 
@@ -39,6 +42,7 @@ After installing the dependencies, run the following command to start the develo
 
 ```bash
 npm run dev
+```
 
 
 ### Why `5173`?
@@ -59,9 +63,3 @@ MoneyTrack provides the following functionality:
 ## Live Demo
 
 https://moneytrack124.netlify.app/
-
-      // other options...
-    },
-  },
-])
-```
