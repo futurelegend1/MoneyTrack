@@ -50,11 +50,12 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
       );
       const user = userCredential.user;
       await updateProfile(user, { displayName: username, photoURL: defaultPhotoURL });
-      await setDoc(doc(db, "users", user.uid), {
-        email: user.email,
-        name: user.displayName,
-        username: user.displayName,
-        photoURL: user.photoURL,
+      await setDoc(doc(db, "users", user!.uid), {
+        uid: user!.uid,
+        email: user!.email,
+        name: user!.displayName,
+        username: user!.displayName,
+        photoURL: user!.photoURL,
         createdAt: serverTimestamp(),
       });
       await sendEmailVerification(user);

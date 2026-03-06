@@ -1,8 +1,11 @@
 import { FcGoogle } from "react-icons/fc";
 import React from "react";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
+import { googleProvider } from "../../firebase";
+import { db } from "../../firebase";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 
 function LoginUser({ handleVisible }: { handleVisible: () => void }) {
   const [email, setEmail] = useState("");
@@ -23,6 +26,28 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
         await auth.signOut();
         return;
       }
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      const user = auth.currentUser;
+      const userDocRef = doc(db, "users", user!.uid);
+      const userDoc = await getDoc(userDocRef);
+      if(!userDoc.exists()) {
+        await setDoc(userDocRef, {
+          uid: user!.uid,
+          email: user!.email,
+          name: user!.displayName,
+          username: user!.displayName,
+          photoURL: user!.photoURL,
+          createdAt: serverTimestamp(),
+        });
+      }
+      console.log("Google login successful", user);
     } catch (error: any) {
       setError(error.message);
     }
@@ -84,7 +109,7 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
         <div className="flex-1 h-px bg-slate-600"></div>
       </div>
 
-      <button className="w-full h-15 text-lg mt-8 flex items-center justify-center gap-2 border-2 border-slate-700 rounded-3xl py-2 hover:bg-slate-800 hover:text-white transition">
+      <button onClick={handleGoogleLogin} className="w-full h-15 text-lg mt-8 flex items-center justify-center gap-2 border-2 border-slate-700 rounded-3xl py-2 hover:bg-slate-800 hover:text-white transition">
         <FcGoogle size={22} />
         Continue with Google
       </button>

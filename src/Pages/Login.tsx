@@ -20,7 +20,7 @@ function Login() {
   return (
     <div className="bg-slate-900 text-slate-400 min-h-screen min-w-screen flex items-center justify-center">
       <section>
-        <div onClick={handleIconClick} className="flex items-center justify-center gap-2 mb-2">
+        <div onClick={handleIconClick} className="flex items-center justify-center gap-2 mb-2 cursor-pointer">
           <IconMoneyTrack className="w-15 h-15" />
           <p className="text-3xl font-semibold text-emerald-400">MoneyTrack</p>
         </div>
