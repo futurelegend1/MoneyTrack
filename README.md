@@ -1,71 +1,65 @@
-# React + TypeScript + Vite
+# MoneyTrack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MoneyTrack is a personal finance web application that helps users track and manage their expenses. The application allows users to create an account, log in securely, and record their spending in an organized way. The goal of MoneyTrack is to provide a simple and clean interface that helps users better understand and manage their financial activity.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project is built using modern web development technologies:
 
-## React Compiler
+- **Vite + React** – used to build the frontend application and provide a fast development environment
+- **JavaScript / TypeScript** – used for application logic and type-safe development
+- **HTML5** – used to structure the web pages
+- **Tailwind CSS** – used for styling and responsive UI design
+- **Firebase Authentication** – used for secure user signup and login
+- **Firebase Firestore** – used as the cloud database to store user and expense data
+- **Netlify** – used for deploying and hosting the application
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Installation
 
-## Expanding the ESLint configuration
+Follow these steps to set up the project locally:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone the repository
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+git clone https://github.com/futurelegend1/MoneyTrack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. Navigate to the project directory
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```bash
+cd MoneyTrack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Install the project dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
+## Execution Instructions
+
+After installing the dependencies, run the following command to start the development server:
+
+```bash
+npm run dev
+
+
+### Why `5173`?
+Since you are using **Vite**, the default local server is: http://localhost:5173
+(not `3000`, which is usually for React with Create React App).
+
+## Project Features
+
+MoneyTrack provides the following functionality:
+
+- **User Authentication** – Users can securely sign up and log in using Firebase Authentication.
+- **Expense Tracking** – Users can add and track their personal expenses.
+- **Cloud Data Storage** – Financial data is stored securely using Firebase Firestore.
+- **Responsive Interface** – The interface is styled using Tailwind CSS to provide a clean and responsive user experience.
+- **Real-time Data Updates** – Changes to user data are reflected dynamically through the application.
+- **Deployed Web Application** – The application is deployed and accessible online using Netlify.
+
+## Live Demo
+
+https://moneytrack124.netlify.app/
+
       // other options...
     },
   },
