@@ -1,6 +1,15 @@
-#Changelog
+# Changelog
 
 All notable changes to the MoneyTrack project will be documented in this file.
+
+## Version 1.4.0
+
+### Added
+
+- Implemented full signup and login functionality using email and password
+- Integrated Google login for authentication
+- Ensured user information is properly stored in Firestore when signing up or signing in with Google
+- Connected login/signup forms to Firebase authentication and database
 
 ## Version 1.3.0
 
@@ -43,3 +52,4 @@ All notable changes to the MoneyTrack project will be documented in this file.
 - Tailwind CSS integration for styling
 - Basic project structure and configuration
 - Deployment of the application using Netlify
+
