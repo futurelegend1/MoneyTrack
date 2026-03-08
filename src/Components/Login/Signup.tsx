@@ -19,6 +19,7 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
   const defaultPhotoURL =
     "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
+  // Validate form inputs before attempting signup
   const validateForm = () => {
     if (!email.includes("@")) {
       return "Invalid email address";
@@ -35,6 +36,7 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
     return null;
   };
 
+  //handle signup with email and password, create a new user document in firestore, send email verification
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     const validationError = validateForm();
@@ -49,7 +51,10 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
         password,
       );
       const user = userCredential.user;
-      await updateProfile(user, { displayName: username, photoURL: defaultPhotoURL });
+      await updateProfile(user, {
+        displayName: username,
+        photoURL: defaultPhotoURL,
+      });
       await setDoc(doc(db, "users", user!.uid), {
         uid: user!.uid,
         email: user!.email,
@@ -70,7 +75,7 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
   return (
     <form
       action="submit"
-      className="grid min-w-lg border-2 border-slate-700 rounded-4xl p-10 gap-4 pt-18"
+      className="grid sm:min-w-lg min-w-sm border-2 border-slate-700 rounded-4xl p-10 gap-4 pt-18"
     >
       <div className="relative mb-8">
         <input
@@ -145,7 +150,7 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
       <button
         onClick={handleSignup}
         type="submit"
-        className="w-full h-15 text-xl flex items-center justify-center gap-2 border-2 border-slate-600 rounded-3xl py-2 hover:bg-emerald-500 hover:scale-105 hover:py-5 text-white transition-transform"
+        className="w-full h-15 sm:text-xl text-lg flex items-center justify-center gap-2 border-2 border-slate-600 rounded-3xl py-2 hover:bg-emerald-500 hover:scale-105 hover:py-5 text-white transition-transform"
       >
         Sign Up
       </button>
@@ -156,7 +161,7 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
         <div className="flex-1 h-px bg-slate-600"></div>
       </div>
 
-      <p className="text-center text-slate-400 text-lg">
+      <p className="text-center text-slate-400 sm:text-lg text-md">
         Already have an account?{" "}
         <button
           onClick={handleVisible}
