@@ -32,7 +32,7 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
       }
       console.log("Login successful", user);
       navigate("/user", { replace: true });
-    } catch (error: any) {
+    } catch { //catch(_error) this tells I intentionally don't use this variable.
       setError("Please check your email and password and try again.");
     }
   };
@@ -40,8 +40,8 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
   //handle login with google, if user does not exist in firestore, create a new user document
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      const user = auth.currentUser;
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
       const userDocRef = doc(db, "users", user!.uid);
       const userDoc = await getDoc(userDocRef);
       if (!userDoc.exists()) {
