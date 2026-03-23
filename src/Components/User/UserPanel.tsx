@@ -2,16 +2,22 @@ import Dashboard from "./UserSidebar/Dashboard";
 import Budget from "./UserSidebar/Budgets";
 import Report from "./UserSidebar/Reports";
 import Transactions from "./UserSidebar/Transactions";
+import Saving from "./UserSidebar/Saving";
+import Debt from "./UserSidebar/Debt"
 import { PlusCircle } from "lucide-react";
 
 function UserPanel({
   open,
   section,
   setSection,
+  showForm,
+  setShowForm,
 }: {
   open: boolean;
   section: string;
   setSection: (section: string) => void;
+  showForm: boolean;
+  setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <div
@@ -28,6 +34,7 @@ function UserPanel({
           <PlusCircle
             size={50}
             className="text-emerald-600 hover:text-emerald-700 transition-colors duration-300 cursor-pointer"
+            onClick={() => setShowForm(true)}
           />
         )}
       </div>
@@ -38,7 +45,9 @@ function UserPanel({
         {section === "Dashboard" && <Dashboard setSection={setSection} />}
         {section === "Budget" && <Budget setSection={setSection} />}
         {section === "Report" && <Report setSection={setSection} />}
-        {section === "Transactions" && <Transactions />}
+        {section === "Transactions" && <Transactions showForm={showForm} setShowForm={setShowForm} />}
+        {section === "Saving" && <Saving/>}
+        {section === "Debt" && <Debt/>}
       </p>
     </div>
   );

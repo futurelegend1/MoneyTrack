@@ -16,7 +16,7 @@ function Dashboard({ setSection }: { setSection: (section: string) => void }) {
 
       <button
         onClick={() => setSection("Transactions")}
-        className="mt-6 px-6 py-3 text-xl bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-all transform hover:scale-105"
+        className="mt-6 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-all transform hover:scale-105"
       >
         Add Transaction
       </button>

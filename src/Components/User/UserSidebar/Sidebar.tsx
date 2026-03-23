@@ -44,6 +44,12 @@ function Sidebar({
         <button onClick={() => setSection("Transactions")} className={menuStyle}>
           <h2 className={menuLableStyle}>Transactions</h2>
         </button>
+        <button onClick={() => setSection("Saving")} className={menuStyle}>
+          <h2 className={menuLableStyle}>Savings</h2>
+        </button>
+        <button onClick={() => setSection("Debt")} className={menuStyle}>
+          <h2 className={menuLableStyle}>Debt</h2>
+        </button>
       </div>
 
       <div className="h-px w-3/4 bg-white/40 absolute bottom-25 left-1/2 -translate-x-1/2"></div>
