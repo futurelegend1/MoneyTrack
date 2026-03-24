@@ -41,7 +41,7 @@ function UserNavbar() {
       console.error("Error signing out:", error);
     }
   };
-
+  
   const handleToggle = () => {
     setToggle(!toggle);
   };
