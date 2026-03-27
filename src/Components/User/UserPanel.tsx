@@ -20,10 +20,11 @@ function UserPanel({
   const [showSavingForm, setShowSavingForm] = useState<boolean>(false);
   const [showDebtForm, setShowDebtForm] = useState<boolean>(false);
 
+  // h-[calc(100vh-12rem)]
   return (
     <div
-      className={`mt-10 mr-8 px-8 py-8 h-[calc(100vh-12rem)] w-full bg-slate-800 rounded-3xl transition-all duration-300 ${
-        open ? "ml-80" : "ml-40"
+      className={`my-10 mr-8 px-8 py-8 w-full bg-slate-800 rounded-3xl transition-all duration-300 ${
+        open ? "ml-85" : "ml-50"
       }`}
     >
       <div className="flex items-center justify-between">

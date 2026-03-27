@@ -1,4 +1,4 @@
-import UserNavbar from "../Components/User/UserNavbar";
+// import UserNavbar from "../Components/User/UserNavbar";
 import Sidebar from "../Components/User/UserSidebar/Sidebar";
 import UserPanel from "../Components/User/UserPanel";
 import { useState } from "react";
@@ -9,7 +9,7 @@ function UserPage() {
 
   return (
     <div className="bg-slate-900 text-slate-400 min-h-screen flex flex-col">
-      <UserNavbar />
+      {/* <UserNavbar /> */}
 
       <div className="flex flex-1 gap-10">
         <Sidebar open={open} setOpen={setOpen} setSection={setSection} />
