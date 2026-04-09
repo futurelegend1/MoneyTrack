@@ -93,7 +93,7 @@ function Saving({
         const targetAmount = data?.targetAmount || 0;
         if (currentAmount + newAmount > targetAmount) {
           alert(
-            `Wait! Adding this would put you over your $${targetAmount} goal. You only need $${(targetAmount - cuurentAmount).toFixed(2)} more.`,
+            `Wait! Adding this would put you over your $${targetAmount} goal. You only need $${(targetAmount - currentAmount).toFixed(2)} more.`,
           );
           return;
         }
