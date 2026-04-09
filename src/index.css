@@ -69,3 +69,24 @@ input[type="number"] {
 .delay-400 {
   animation-delay: 0.4s;
 }
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 24px;
+}
+
+/* scrollbar thumb */
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #475569; /* slate-600 */
+  border: 8px solid transparent;
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+
+/* available scrollbar space */
+.overflow-y-auto::-webkit-scrollbar-track { 
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b; /* slate-500 for better feedback */
+}

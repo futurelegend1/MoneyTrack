@@ -67,8 +67,8 @@ function Signup({ handleVisible }: { handleVisible: () => void }) {
       alert("Signup successful! Please check your email for verification.");
       await auth.signOut();
       handleVisible();
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError((error as Error).message);
     }
   };
 

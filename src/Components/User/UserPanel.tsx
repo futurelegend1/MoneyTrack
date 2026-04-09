@@ -3,7 +3,7 @@ import Budget from "./UserSidebar/Budgets";
 import Report from "./UserSidebar/Reports";
 import Transactions from "./UserSidebar/Transactions";
 import Saving from "./UserSidebar/Saving";
-import Debt from "./UserSidebar/Debt"
+import Debt from "./UserSidebar/Debt";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 
@@ -16,14 +16,14 @@ function UserPanel({
   section: string;
   setSection: (section: string) => void;
 }) {
-  const [showForm, setShowForm] = useState<boolean>(false); 
+  const [showForm, setShowForm] = useState<boolean>(false);
   const [showSavingForm, setShowSavingForm] = useState<boolean>(false);
   const [showDebtForm, setShowDebtForm] = useState<boolean>(false);
 
   // h-[calc(100vh-12rem)]
   return (
     <div
-      className={`my-10 mr-8 px-8 py-8 w-full bg-slate-800 rounded-3xl transition-all duration-300 ${
+      className={`h-[calc(100vh-5rem)] flex flex-col my-10 mr-8 px-8 py-8 w-full bg-slate-800 rounded-3xl transition-all duration-400 ${
         open ? "ml-85" : "ml-50"
       }`}
     >
@@ -32,36 +32,48 @@ function UserPanel({
           Welcome to your {section}!
         </h1>
 
-        {section === "Transactions" && (
+        {(section === "Transactions" && (
           <PlusCircle
             size={50}
             className="text-emerald-600 hover:text-emerald-700 transition-colors duration-300 cursor-pointer"
             onClick={() => setShowForm(true)}
           />
-        ) || section === "Saving" && (
-          <PlusCircle
-            size={50}
-            className="text-emerald-600 hover:text-emerald-700 transition-colors duration-300 cursor-pointer"
-            onClick={() => setShowSavingForm(true)}
-          />
-        ) || section === "Debt" && (
-          <PlusCircle
-            size={50}
-            className="text-emerald-600 hover:text-emerald-700 transition-colors duration-300 cursor-pointer"
-            onClick={() => setShowDebtForm(true)}
-          />
-        )}
+        )) ||
+          (section === "Saving" && (
+            <PlusCircle
+              size={50}
+              className="text-emerald-600 hover:text-emerald-700 transition-colors duration-300 cursor-pointer"
+              onClick={() => setShowSavingForm(true)}
+            />
+          )) ||
+          (section === "Debt" && (
+            <PlusCircle
+              size={50}
+              className="text-emerald-600 hover:text-emerald-700 transition-colors duration-300 cursor-pointer"
+              onClick={() => setShowDebtForm(true)}
+            />
+          ))}
       </div>
 
       <div className="mt-6 h-px bg-white/60"></div>
 
-      <div className="mt-8">
+
+      <div className="mt-4 overflow-hidden">
         {section === "Dashboard" && <Dashboard setSection={setSection} />}
         {section === "Budget" && <Budget setSection={setSection} />}
         {section === "Report" && <Report setSection={setSection} />}
-        {section === "Transactions" && <Transactions showForm={showForm} setShowForm={setShowForm} />}
-        {section === "Saving" && <Saving showSavingForm={showSavingForm} setShowSavingForm={setShowSavingForm}/>}
-        {section === "Debt" && <Debt showDebtForm={showDebtForm} setShowDebtForm={setShowDebtForm}/>}
+        {section === "Transactions" && (
+          <Transactions showForm={showForm} setShowForm={setShowForm} />
+        )}
+        {section === "Saving" && (
+          <Saving
+            showSavingForm={showSavingForm}
+            setShowSavingForm={setShowSavingForm}
+          />
+        )}
+        {section === "Debt" && (
+          <Debt showDebtForm={showDebtForm} setShowDebtForm={setShowDebtForm} />
+        )}
       </div>
     </div>
   );

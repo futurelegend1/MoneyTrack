@@ -52,7 +52,7 @@ function Sidebar({
       }
     });
     return () => unsubscribe();
-  }, [user]);
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -70,7 +70,7 @@ function Sidebar({
   //h-[calc(100vh-12rem)]
   return (
     <div
-      className={`fixed left-10 top-10 bottom-10 ${open ? "w-65" : "w-30"} bg-slate-800 text-slate-400 px-5 py-8 flex flex-col shadow-lg transition-all rounded-4xl duration-300 z-40`}
+      className={`fixed left-10 top-10 bottom-10 ${open ? "w-65" : "w-30"} bg-slate-800 text-slate-400 px-5 py-8 flex flex-col shadow-lg transition-all rounded-4xl duration-400 z-40`}
     >
       <div className={`flex items-center ${open ? "justify-start gap-2" : "justify-center"}`}>
         <IconMoneyTrack className="w-12 h-12 text-white shrink-0" />
@@ -156,7 +156,7 @@ function Sidebar({
           }
           className="shrink-0 rounded-full w-11 h-11 hover:scale-110 border-2 border-transparent hover:border-emerald-500 transition-all duration-200"
         />
-        {open && <h2 className="text-white font-semibold">{username || user?.email}</h2>}
+        {open && <h2 className="text-white font-semibold">{username || user?.displayName ||user?.email}</h2>}
       </div>
     </div>
   );

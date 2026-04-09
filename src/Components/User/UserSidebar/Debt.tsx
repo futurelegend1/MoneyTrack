@@ -40,7 +40,7 @@ function Debt({
               {/* Target Goal */}
               <div className="flex flex-col gap-1">
                 <label className="text-white font-medium self-start">
-                  Debt to payoff
+                  Debt to pay off
                 </label>
                 <input
                   type="text"
@@ -62,7 +62,7 @@ function Debt({
               {/* Expect Complete Date */}
               <div className="flex flex-col gap-1">
                 <label className="text-white font-medium self-start">
-                  Expect payoff Date
+                  Expect pay off Date
                 </label>
                 <input
                   type="date"

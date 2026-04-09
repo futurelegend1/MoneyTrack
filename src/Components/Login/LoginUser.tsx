@@ -56,8 +56,8 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
       }
       console.log("Google login successful", user);
       navigate("/user", { replace: true });
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError((error as Error).message);
     }
   };
 
