@@ -2,6 +2,18 @@
 
 All notable changes to the MoneyTrack project will be documented in this file.
 
+## Version 1.8.1
+
+### Fixed
+
+- Fixed issue where current saved amount could exceed the target total amount by adding validation checks
+
+## Version 1.8.0
+
+### Added
+
+- Implemented password reset functionality using Firebase Authentication
+
 ## Version 1.7.1
 
 ### Fixed
