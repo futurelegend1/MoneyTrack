@@ -41,7 +41,7 @@ function Saving({
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [savingGoals, setSavingGoals] = useState<SavingGoal[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentAmountInput, setCurrentAmountInput] = useState<string>("");
+  const [currentAmountInput, setCurrentAmountInput] = useState<{ [key: string]: string }>({});
   const [form, setForm] = useState<SavingForm>({
     targetGoal: "",
     targetAmount: "",
@@ -100,7 +100,7 @@ function Saving({
         await updateDoc(goalRef, {
           CurrentAmount: increment(newAmount),
         });
-        setCurrentAmountInput("");
+        setCurrentAmountInput({ ...currentAmountInput, [goalId]: "" });
       }
     } catch (error) {
       console.error("Error updating current amount:", error);
@@ -188,7 +188,7 @@ function Saving({
 
               return (
                 <div
-                  className={`group grid grid-cols-5 items-center rounded-2xl border-2 py-2 px-8 text-left ${savingGoalCompleted ? "bg-goldenrod border-emerald-500" : "bg-slate-600"}`}
+                  className={`group grid grid-cols-5 items-center rounded-2xl border-2 py-2 px-8 text-left ${savingGoalCompleted ? "bg-goldenrod border-emerald-500" : "bg-slate-700"}`}
                   key={goal.id}
                 >
                   <h3 className="text-white text-lg font-semibold">
@@ -211,7 +211,7 @@ function Saving({
                         onClick={() =>
                           handleUpdateCurrentAmount(
                             goal.id,
-                            Number(currentAmountInput),
+                            Number(currentAmountInput[goal.id] || 0),
                           )
                         }
                         className={`p-1 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-colors ${savingGoalCompleted ? "cursor-not-allowed opacity-50" : ""}`}
@@ -223,15 +223,15 @@ function Saving({
                         placeholder="0"
                         type="number"
                         className={`w-full min-w-0 bg-slate-700 text-white placeholder:text-slate-400 border border-transparent rounded-lg px-2 py-1 focus:outline-none focus:border-white ${savingGoalCompleted ? "cursor-not-allowed opacity-50" : ""}`}
-                        value={currentAmountInput}
-                        onChange={(e) => setCurrentAmountInput(e.target.value)}
+                        value={currentAmountInput[goal.id] || ""}
+                        onChange={(e) => setCurrentAmountInput((prev) => ({ ...prev, [goal.id]: e.target.value }))}
                       />
                       <button
                         disabled={savingGoalCompleted}
                         onClick={() =>
                           handleUpdateCurrentAmount(
                             goal.id,
-                            -Number(currentAmountInput),
+                            -Number(currentAmountInput[goal.id] || 0),
                           )
                         }
                         className={`p-1 hover:bg-red-500/20 text-red-400 rounded-lg transition-colors ${savingGoalCompleted ? "cursor-not-allowed opacity-50" : ""}`}
