@@ -1,15 +1,22 @@
 import { FcGoogle } from "react-icons/fc";
 import React from "react";
 import { useState } from "react";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { auth } from "../../firebase";
 import { googleProvider } from "../../firebase";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc, getDoc } from "firebase/firestore";
 
 function LoginUser({ handleVisible }: { handleVisible: () => void }) {
   const [email, setEmail] = useState("");
+  const [updatePasswordMessage, setUpdatePasswordMessage] = useState<
+    string | null
+  >(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -32,8 +39,33 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
       }
       console.log("Login successful", user);
       navigate("/user", { replace: true });
-    } catch { //catch(_error) this tells I intentionally don't use this variable.
+    } catch {
+      //catch(_error) this tells I intentionally don't use this variable.
       setError("Please check your email and password and try again.");
+    }
+  };
+
+  const handlePasswordReset = async () => {
+    // Implement password reset functionality here
+    if (!email) {
+      setError("Please enter your email to reset your password.");
+      return;
+    }
+
+    setError(null);
+    setUpdatePasswordMessage("Sending reset email...");
+
+    try {
+      await sendPasswordResetEmail(auth, email, {
+        url: "http://localhost:5173/login",
+      });
+      setUpdatePasswordMessage(
+        "If an account exists, a reset email has been sent.",
+      );
+      setError(null);
+    } catch (error: unknown) {
+      setUpdatePasswordMessage(null);
+      setError((error as Error).message);
     }
   };
 
@@ -104,6 +136,12 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
         </p>
       )}
 
+      {updatePasswordMessage && (
+        <p className="bg-green-500/20 border border-green-500 text-green-400 text-md p-2 -mt-2 rounded-xl">
+          {updatePasswordMessage}
+        </p>
+      )}
+
       <button
         type="submit"
         className="flex justify-center items-center text-white sm:text-xl text-md w-full sm:h-15 h-12 border-2 border-slate-600 rounded-3xl py-2 hover:bg-emerald-500 hover:scale-105 hover:py-5 transition-transform"
@@ -129,6 +167,7 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
       <p className="text-center text-slate-400 sm:text-lg text-md mt-6">
         Don’t have an account?{" "}
         <button
+          type="button"
           onClick={handleVisible}
           className="text-emerald-400 hover:underline"
         >
@@ -138,7 +177,11 @@ function LoginUser({ handleVisible }: { handleVisible: () => void }) {
 
       <p className="text-center text-slate-400 sm:text-lg text-md">
         Forgot your password?{" "}
-        <button className="text-emerald-400 hover:underline">
+        <button
+          type="button"
+          className="text-emerald-400 hover:underline"
+          onClick={handlePasswordReset}
+        >
           Reset it here
         </button>
       </p>
