@@ -2,6 +2,67 @@
 
 All notable changes to the MoneyTrack project will be documented in this file.
 
+## Version 1.8.1
+
+### Fixed
+
+- Fixed issue where current saved amount could exceed the target total amount by adding validation checks
+
+## Version 1.8.0
+
+### Added
+
+- Implemented password reset functionality using Firebase Authentication
+
+## Version 1.7.1
+
+### Fixed
+
+- Fixed date input issue (off-by-one day bug)
+
+## Version 1.7.0
+
+### Added
+
+- Implemented transaction form for users to input and store transaction data in Firestore with proper structure
+- Implemented saving goal and debt forms for structured data storage
+- Enabled real-time updates for:
+  - Transactions
+  - Saving goals
+  - Debt categories
+- Added "More" button for each transaction to display full details (especially long descriptions) without entering edit mode
+- Added increment and decrement functionality for saving goals to easily adjust the current saved amount
+
+## Version 1.6.0
+
+### Added
+
+- Completed the main user page UI and enabled successful navigation after user sign-in
+- Implemented email verification for newly registered users for improved security
+
+### Improved
+
+- Sidebar can now be toggled (shown/hidden)
+- Main panel dynamically expands or shrinks based on sidebar visibility
+- Refined main user page UI:
+  - Removed top user navigation bar
+  - Enhanced and reorganized the user side panel
+
+ ### Added
+
+- Introduced initial empty states for Dashboard, Budget, and Reports categories
+- Added guidance message:
+"You haven't added any transactions yet. Start by adding your first goal to track your progress."
+- Added navigation buttons to direct users to the Transactions page when no data exists
+- Added Saving and Debt categories to the user side panel
+
+## Version 1.5.0
+
+### Added
+
+- Completed the main user page UI and enabled successful navigation after user sign-in
+- Implemented email verification for newly registered users for improved security
+
 ## Version 1.4.0
 
 ### Added
