@@ -106,7 +106,7 @@ function Transactions({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-full text-center overflow-hidden">
+      <div className="flex flex-col items-center justify-center w-full h-full text-center overflow-hidden">
         {/* {transactions.length > 0 && (
           <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr] w-full items-center text-left mb-4 px-8">
             <p className="text-lg font-semibold text-white">Type</p>
@@ -122,7 +122,7 @@ function Transactions({
             Loading transactions...
           </p>
         ) : transactions.length === 0 ? (
-          <>
+          <div className="flex flex-col items-center justify-start h-full text-center p-4">
             <ReceiptText size={60} className="text-slate-500 mb-4" />
 
             <h2 className="text-2xl font-semibold text-white">
@@ -140,10 +140,10 @@ function Transactions({
             >
               Add Transaction
             </button>
-          </>
+          </div>
         ) : (
           <>
-          <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr] w-full items-center text-left mb-4 px-8">
+          <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr] w-full text-left mb-4 px-8">
             <p className="text-lg font-semibold text-white">Type</p>
             <p className="text-lg font-semibold text-white">Amount</p>
             <p className="text-lg font-semibold text-white">Description</p>
@@ -151,12 +151,12 @@ function Transactions({
               Date
             </p>
           </div>
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto w-full">
             <div className="flex flex-col gap-4 w-full pb-4">
               {transactions.map((transaction) => (
                 <div
                   key={transaction.id}
-                  className="bg-slate-700 w-full grid grid-cols-[1fr_1fr_2fr_1fr_1fr] items-center text-left p-4 rounded-2xl"
+                  className="bg-slate-700 grid grid-cols-[1fr_1fr_2fr_1fr_1fr] items-center text-left p-4 rounded-2xl"
                 >
                   <h3 className="text-lg font-semibold text-white mx-4">
                     {transaction.category}

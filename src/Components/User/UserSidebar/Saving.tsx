@@ -150,7 +150,7 @@ function Saving({
           Loading Your Saving Goals...
         </p>
       ) : savingGoals.length === 0 ? (
-        <>
+        <div className="flex flex-col items-center justify-start h-full text-center p-4">
           <PiggyBank size={60} className="text-slate-500 mb-4" />
 
           <h2 className="text-2xl font-semibold text-white">
@@ -168,7 +168,7 @@ function Saving({
           >
             Add Saving Goals
           </button>
-        </>
+        </div>
       ) : (
         <>
           <div className="grid grid-cols-5 w-full text-left mb-4 px-8">

@@ -58,7 +58,7 @@ function UserPanel({
       <div className="mt-6 h-px bg-white/60"></div>
 
 
-      <div className="mt-4 overflow-hidden">
+      <div className="mt-4 h-full overflow-hidden">
         {section === "Dashboard" && <Dashboard setSection={setSection} />}
         {section === "Budget" && <Budget setSection={setSection} />}
         {section === "Report" && <Report setSection={setSection} />}
