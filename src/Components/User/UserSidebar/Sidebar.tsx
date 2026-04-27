@@ -32,6 +32,7 @@ function Sidebar({
 }) {
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("Dashboard");
   const navigate = useNavigate();
   const defaultPhotoURL =
     "https://cdn-icons-png.flaticon.com/512/149/149071.png";
@@ -63,8 +64,14 @@ function Sidebar({
     }
   };
 
-  const menuStyle =
-    `w-full gap-4 flex px-3 py-2 ${open ? "justify-start" : "justify-center"} border-transparent rounded-xl hover:bg-slate-600 transition-colors duration-300 cursor-pointer`;
+  const menuStyle = (item: string) =>
+    `w-full gap-4 flex px-3 py-2 ${
+    open ? "justify-start" : "justify-center"
+  } rounded-xl transition-colors duration-300 cursor-pointer ${
+    activeSection === item
+      ? "bg-slate-600 text-white"
+      : "hover:bg-slate-600"
+  }`;
   const menuLableStyle = "text-lg text-white font-small";
 
   //h-[calc(100vh-12rem)]
@@ -80,30 +87,30 @@ function Sidebar({
       <div className="h-px bg-white/60 my-4"></div>
 
       <div className="flex flex-col items-start gap-2">
-        <button onClick={() => setSection("Dashboard")} className={menuStyle}>
+        <button onClick={() => {setSection("Dashboard"); setActiveSection("Dashboard")}} className={menuStyle("Dashboard")}>
           <LayoutDashboard size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Dashboard</h2>}
         </button>
-        <button onClick={() => setSection("Budget")} className={menuStyle}>
+        <button onClick={() => {setSection("Budget"); setActiveSection("Budget")}} className={menuStyle("Budget")}>
           <Wallet size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Budgets</h2>}
         </button>
-        <button onClick={() => setSection("Report")} className={menuStyle}>
+        <button onClick={() => {setSection("Report"); setActiveSection("Report")}} className={menuStyle("Report")}>
           <BarChart2 size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Reports</h2>}
         </button>
         <button
-          onClick={() => setSection("Transactions")}
-          className={menuStyle}
+          onClick={() => {setSection("Transactions"); setActiveSection("Transactions")}}
+          className={menuStyle("Transactions")}
         >
           <ReceiptText size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Transactions</h2>}
         </button>
-        <button onClick={() => setSection("Saving")} className={menuStyle}>
+        <button onClick={() => {setSection("Saving"); setActiveSection("Saving")}} className={menuStyle("Saving")}>
           <PiggyBank size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Savings</h2>}
         </button>
-        <button onClick={() => setSection("Debt")} className={menuStyle}>
+        <button onClick={() => {setSection("Debt"); setActiveSection("Debt")}} className={menuStyle("Debt")}>
           <TrendingDown size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Debt</h2>}
         </button>
@@ -112,19 +119,19 @@ function Sidebar({
       <div className="h-px bg-white/60 my-4"></div>
 
       <div className="flex flex-col items-start gap-2">
-        <button className={menuStyle}>
+        <button className={menuStyle("Settings")}>
           <Settings size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Settings</h2>}
         </button>
-        <button className={menuStyle}>
+        <button className={menuStyle("ChatBot")}>
           <MessageCircle size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>ChatBot</h2>}
         </button>
-        <button className={menuStyle}>
+        <button className={menuStyle("Help")}>
           <HelpCircle size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Help</h2>}
         </button>
-        <button className={menuStyle} onClick={handleSignOut}>
+        <button className={menuStyle("Logout")} onClick={handleSignOut}>
           <LogOut size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Logout</h2>}
         </button>
