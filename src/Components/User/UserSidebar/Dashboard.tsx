@@ -7,8 +7,8 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../../firebase";
 import DashboardTransaction from "./DashboardElement/DashboardTransaction";
 import DashBoardRecentTransaction from "./DashboardElement/DashboardRecentTransaction";
-import DashboardSaving from "./DashboardElement/DashboardSaving";
-import DashboardDebt from "./DashboardElement/DashboardDebt";
+// import DashboardSaving from "./DashboardElement/DashboardSaving";
+// import DashboardDebt from "./DashboardElement/DashboardDebt";
 
 function Dashboard({ setSection }: { setSection: (section: string) => void }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -172,9 +172,9 @@ function Dashboard({ setSection }: { setSection: (section: string) => void }) {
 
           <div className="grid grid-rows-[1fr_1fr] gap-4">
             {/*Saving Goal Column*/}
-            <DashboardSaving savingGoals={savingGoals} />
+            {/* <DashboardSaving savingGoals={savingGoals} /> */}
             {/*Debt Column*/}
-            <DashboardDebt debts={debt} />
+            {/* <DashboardDebt debts={debt} /> */}
           </div>
         </div>
       )}

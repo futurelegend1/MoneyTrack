@@ -1,13 +1,15 @@
-
 type SavingGoal = {
-    id: string;
-    targetGoal: string;
-    targetAmount: number;
-    CurrentAmount: number;
-    expectedCompletionDate: Date;
-  };
-function DashboardSaving({savingGoals}: {savingGoals: SavingGoal[]}) {
-    const nearestGoal = savingGoals.sort((a, b) => a.expectedCompletionDate.getTime() - b.expectedCompletionDate.getTime())[0];
+  id: string;
+  targetGoal: string;
+  targetAmount: number;
+  CurrentAmount: number;
+  expectedCompletionDate: Date;
+};
+function DashboardSaving({ savingGoals }: { savingGoals: SavingGoal[] }) {
+  const nearestGoal = savingGoals.sort(
+    (a, b) =>
+      a.expectedCompletionDate.getTime() - b.expectedCompletionDate.getTime(),
+  )[0];
 
   return (
     <div className="bg-slate-700 rounded-2xl p-4">

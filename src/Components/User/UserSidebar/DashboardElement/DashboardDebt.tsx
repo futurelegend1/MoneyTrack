@@ -1,12 +1,14 @@
- type Debt = {
-    id: string;
-    debt: string;
-    amountPay: number;
-    currentAmountPayed: number;
-    dueDate: Date;
-  };
-function DashboardDebt({debts}: {debts: Debt[]}) {
-    const nearestDebt = debts.sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime())[0];
+type Debt = {
+  id: string;
+  debt: string;
+  amountPay: number;
+  currentAmountPayed: number;
+  dueDate: Date;
+};
+function DashboardDebt({ debts }: { debts: Debt[] }) {
+  const nearestDebt = debts.sort(
+    (a, b) => a.dueDate.getTime() - b.dueDate.getTime(),
+  )[0];
 
   return (
     <div className="bg-slate-700 rounded-2xl p-4">
