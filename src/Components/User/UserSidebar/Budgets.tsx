@@ -39,7 +39,7 @@ function Budget({ setSection }: { setSection: (section: string) => void }) {
   const [budget, setBudget] = useState<Budget[]>([]);
   const [budgetForm, setBudgetForm] = useState<BudgetForm>({
     budgetAmount: "",
-    date: "",
+    date: new Date().toISOString().split("T")[0],
   });
   const [showBudgetForm, setShowBudgetForm] = useState<boolean>(false);
   const COLORS: { [key: string]: string } = {
@@ -129,12 +129,14 @@ function Budget({ setSection }: { setSection: (section: string) => void }) {
     }
     try {
       const budgetId = `${selectedYear}-${selectedMonth}`;
+
+      const [year, month, day] = budgetForm.date.split("-").map(Number);
+      const localDate = new Date(year, month - 1, day);
+
       await setDoc(doc(db, "users", currentUser!.uid, "budgets", budgetId), {
         id: budgetId,
         amount: Number(budgetForm.budgetAmount),
-        createdAt: Timestamp.fromDate(
-          new Date(budgetForm.date.replace(/-/g, "/")),
-        ),
+        createdAt: Timestamp.fromDate(localDate),
       });
       setShowBudgetForm(false);
       setBudgetForm({ budgetAmount: "", date: "" });
@@ -189,7 +191,6 @@ function Budget({ setSection }: { setSection: (section: string) => void }) {
   let typeForms = (
     <div className="h-full w-full p-4 grid grid-cols-[4fr_3fr] gap-5">
       <div className="bg-slate-700 rounded-3xl p-4">
-
         {/* Header with month/year and filters */}
         <div className="grid grid-cols-3 gap-2 mt-2">
           <h2 className="ml-4 text-white text-lg">
@@ -332,7 +333,6 @@ function Budget({ setSection }: { setSection: (section: string) => void }) {
             </div>
           )}
         </div>
-        
       </div>
 
       <div className="bg-slate-700 rounded-3xl p-4">
@@ -506,7 +506,10 @@ function Budget({ setSection }: { setSection: (section: string) => void }) {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setShowBudgetForm(false)}
+                    onClick={() => {
+                      setShowBudgetForm(false);
+                      setBudgetForm({ budgetAmount: "", date: new Date().toISOString().split("T")[0] });
+                    }}
                     className="bg-slate-600 hover:bg-slate-700 text-lg text-white rounded-xl p-3 transition-all hover:scale-105 duration-200"
                   >
                     Cancel
