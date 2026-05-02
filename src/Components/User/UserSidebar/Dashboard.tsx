@@ -157,7 +157,7 @@ function Dashboard({ setSection }: { setSection: (section: string) => void }) {
       ) : (
         <div className="grid grid-cols-[4fr_2fr] gap-6 h-full overflow-y-auto">
           {/*Transaction Column*/}
-          <div className="grid grid-rows-[5fr_3fr] gap-4">
+          <div className="grid grid-rows-[5fr_3fr] gap-4 h-full w-full min-h-0">
             <DashboardTransaction
               transactions={transactions}
               filteredTransactions={filteredTransactions}

@@ -111,13 +111,13 @@ function Saving({
     e.preventDefault();
     if (!currentUser) return;
     try {
+      const [year, month, date] = form.expectedCompletionDate.split("-").map(Number);
+      const localExpectedDate = new Date(year, month - 1, date);
       await addDoc(collection(db, "users", currentUser.uid, "savingGoals"), {
         targetGoal: form.targetGoal,
         targetAmount: Number(form.targetAmount),
         CurrentAmount: Number("0"),
-        expectedCompletionDate: Timestamp.fromDate(
-          new Date(form.expectedCompletionDate.replace(/-/g, "/")),
-        ),
+        expectedCompletionDate: Timestamp.fromDate(localExpectedDate),
       });
       setForm({
         targetGoal: "",

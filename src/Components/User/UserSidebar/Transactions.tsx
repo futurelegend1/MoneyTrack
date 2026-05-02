@@ -86,11 +86,13 @@ function Transactions({
         alert("User not authenticated");
         return;
       }
+      const [year, month, date] = form.date.split("-").map(Number);
+      const localDate = new Date(year, month - 1, date);
       await addDoc(collection(db, "users", currentUser.uid, "transactions"), {
         category: form.category,
         amount: Number(form.amount),
         description: form.description,
-        date: Timestamp.fromDate(new Date(form.date.replace(/-/g, "/"))),
+        date: Timestamp.fromDate(localDate),
       });
       setForm({
         category: "",

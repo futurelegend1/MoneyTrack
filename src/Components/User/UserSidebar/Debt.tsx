@@ -124,11 +124,13 @@ function Debt({
         alert("user not authenticated");
         return;
       }
+      const [year, month, date] = form.dueDate.split("-").map(Number);
+      const localDueDate = new Date(year, month - 1, date);
       await addDoc(collection(db, "users", user.uid, "debts"), {
         debt: form.debt,
         amountPay: Number(form.amount),
         currentAmountPayed: Number("0"),
-        dueDate: Timestamp.fromDate(new Date(form.dueDate.replace(/-/g, "/"))),
+        dueDate: Timestamp.fromDate(localDueDate),
       });
       setForm({ debt: "", amount: "", currentAmountPayed: "", dueDate: "" });
       setShowDebtForm(false);
