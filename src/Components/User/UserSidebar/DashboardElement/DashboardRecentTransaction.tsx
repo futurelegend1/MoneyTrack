@@ -23,12 +23,12 @@ function DashBoardRecentTransaction({
   return (
     <div className="bg-slate-700 rounded-2xl p-2 h-full grid grid-rows-[3fr_10fr]">
       {/*Header*/}
-      <div>
+      <div className="flex flex-col items-center justify-center">
         <h2 className="text-white text-center text-xl font-semibold mb-2">
           Recent Transactions
         </h2>
 
-        <div className="h-px bg-white/60 mx-4"></div>
+        <div className="h-px bg-white/60 mx-4 w-full"></div>
       </div>
       {/*Content*/}
       <div>
