@@ -65,59 +65,61 @@ function DashboarTransaction({
   }));
 
   return (
-    <div className="bg-slate-700 rounded-2xl p-4">
-      <div className="grid grid-cols-3 items-center">
-        <div className="flex items-center gap-2 ml-4">
-          <p className="text-xl text-white">Total Spent: </p>
-          {filteredTransactions.length === 0 ? (
-            <p className="text-emerald-400 text-xl font-semibold">$0</p>
-          ) : (
-            <p className="text-emerald-400 text-xl font-semibold">
-              $
-              {filteredTransactions.reduce(
-                (total, transaction) => total + Number(transaction.amount),
-                0,
-              )}
-            </p>
-          )}
-        </div>
-        <h2 className="text-white text-center text-2xl font-semibold mb-4 ">
-          Transactions
-        </h2>
-        <div className="flex items-center justify-end gap-6 mr-4">
-          <select
-            value={selectedMonth}
-            onChange={(e) => setSelectedMonth(Number(e.target.value))}
-            className="bg-slate-800 text-white py-1 px-3 border border-white rounded-lg hover:bg-slate-600 hover:cursor-pointer hover:scale-105 transition-all duration-150"
-          >
-            {months.map((month, index) => (
-              <option key={index} value={index}>
-                {month}
-              </option>
-            ))}
-          </select>
-
-          <select
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(Number(e.target.value))}
-            className="bg-slate-800 text-white py-1 px-3 border border-white rounded-lg hover:bg-slate-600 hover:cursor-pointer hover:scale-105 transition-all duration-150"
-          >
-            {avaliableYears.length === 0 ? (
-              <option>No Data</option>
+    <div className="bg-slate-700 rounded-2xl p-4 grid grid-rows-[2fr_12fr]">
+      <div>
+        <div className="grid grid-cols-3 items-center">
+          <div className="flex items-center gap-2 ml-4">
+            <p className="text-xl text-white">Total Spent: </p>
+            {filteredTransactions.length === 0 ? (
+              <p className="text-emerald-400 text-xl font-semibold">$0</p>
             ) : (
-              avaliableYears.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))
+              <p className="text-emerald-400 text-xl font-semibold">
+                $
+                {filteredTransactions.reduce(
+                  (total, transaction) => total + Number(transaction.amount),
+                  0,
+                )}
+              </p>
             )}
-          </select>
+          </div>
+          <h2 className="text-white text-center text-2xl font-semibold mb-4 ">
+            Transactions
+          </h2>
+          <div className="flex items-center justify-end gap-6 mr-4">
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(Number(e.target.value))}
+              className="bg-slate-800 text-white py-1 px-3 border border-white rounded-lg hover:bg-slate-600 hover:cursor-pointer hover:scale-105 transition-all duration-150"
+            >
+              {months.map((month, index) => (
+                <option key={index} value={index}>
+                  {month}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+              className="bg-slate-800 text-white py-1 px-3 border border-white rounded-lg hover:bg-slate-600 hover:cursor-pointer hover:scale-105 transition-all duration-150"
+            >
+              {avaliableYears.length === 0 ? (
+                <option>No Data</option>
+              ) : (
+                avaliableYears.map((y) => (
+                  <option key={y} value={y}>
+                    {y}
+                  </option>
+                ))
+              )}
+            </select>
+          </div>
         </div>
+
+        <div className="mt-px h-px bg-white/60 mx-4"></div>
       </div>
 
-      <div className="mt-px h-px bg-white/60 mx-4"></div>
-
-      <>
+      <div>
         <style>
           {`
             .recharts-cartesian-axis-tick,
@@ -188,7 +190,7 @@ function DashboarTransaction({
             </ResponsiveContainer>
           )}
         </div>
-      </>
+      </div>
     </div>
   );
 }
