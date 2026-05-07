@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* This kills the focus ring on all chart elements specifically */
+.recharts-rectangle:focus,
+.recharts-active-dot:focus,
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* This prevents the "flash" or "stroke" highlight on click */
+path.recharts-rectangle {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   transform: scale(1.4);
   cursor: pointer;
