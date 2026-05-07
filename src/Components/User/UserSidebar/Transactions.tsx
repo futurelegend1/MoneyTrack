@@ -108,19 +108,9 @@ function Transactions({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full h-full text-center overflow-hidden">
-        {/* {transactions.length > 0 && (
-          <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr] w-full items-center text-left mb-4 px-8">
-            <p className="text-lg font-semibold text-white">Type</p>
-            <p className="text-lg font-semibold text-white">Amount</p>
-            <p className="text-lg font-semibold text-white">Description</p>
-            <p className="text-lg font-semibold text-white text-center pl-16">
-              Date
-            </p>
-          </div>
-        )} */}
+      <div className="flex flex-col w-full h-full">
         {loading ? (
-          <p className="text-white text-2xl font-bold">
+          <p className="text-white text-2xl font-bold text-center">
             Loading transactions...
           </p>
         ) : transactions.length === 0 ? (
@@ -149,7 +139,7 @@ function Transactions({
             <p className="text-lg font-semibold text-white">Type</p>
             <p className="text-lg font-semibold text-white">Amount</p>
             <p className="text-lg font-semibold text-white">Description</p>
-            <p className="text-lg font-semibold text-white text-center pl-16">
+            <p className="text-lg font-semibold text-white text-center pl-28">
               Date
             </p>
           </div>

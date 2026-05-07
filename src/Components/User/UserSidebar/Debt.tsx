@@ -140,9 +140,9 @@ function Debt({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center">
+    <div className="flex flex-col h-full text-center">
       {loading ? (
-        <p className="text-white text-2xl font-bold">Loading Your Debt...</p>
+        <p className="text-white text-2xl text-center font-bold">Loading Your Debt...</p>
       ) : debt.length === 0 ? (
         <div className="flex flex-col items-center justify-start h-full text-center p-4">
           <TrendingDown size={60} className="text-slate-500 mb-4" />

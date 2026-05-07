@@ -132,7 +132,7 @@ function Saving({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center overflow-hidden">
+    <div className="flex flex-col h-full text-center">
       {/* {savingGoals.length > 0 && (
         <div className="grid grid-cols-5 w-full text-left mb-4 px-8">
           <p className="text-lg font-semibold text-white ">Target Goal</p>
@@ -146,7 +146,7 @@ function Saving({
         </div>
       )} */}
       {loading ? (
-        <p className="text-white text-2xl font-bold">
+        <p className="text-white text-2xl font-bold text-center">
           Loading Your Saving Goals...
         </p>
       ) : savingGoals.length === 0 ? (
