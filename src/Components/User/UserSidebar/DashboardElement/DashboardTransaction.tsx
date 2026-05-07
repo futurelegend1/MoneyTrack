@@ -65,7 +65,7 @@ function DashboarTransaction({
   }));
 
   return (
-    <div className="bg-slate-700 rounded-2xl p-4 grid grid-rows-[2fr_12fr] h-full w-full">
+    <div className="bg-slate-700 rounded-2xl p-4 flex flex-col h-full w-full">
       <div>
         <div className="grid grid-cols-3 items-center">
           <div className="flex items-center gap-2 ml-4">
@@ -119,7 +119,7 @@ function DashboarTransaction({
         <div className="mt-px h-px bg-white/60 mx-4"></div>
       </div>
 
-      <div>
+      <div className="flex-1 h-full w-full mt-5">
         <style>
           {`
             .recharts-cartesian-axis-tick,
@@ -133,19 +133,20 @@ function DashboarTransaction({
             }
             `}
         </style>
-        <div className="h-full w-full mt-2 mx-4 outline-none focus:outline-none flex items-center justify-center">
           {Object.keys(categoryTotals).length === 0 ? (
-            <p className="text-slate-400">No transaction data yet</p>
+            <div className="text-center">
+              <p className="text-white text-xl">No transaction data yet for this month</p>
+            </div>
           ) : (
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={chartData}
                 layout="vertical"
-                margin={{ top: 5, right: 40, left: 0, bottom: 20 }}
+                margin={{ top: 5, right: 30, left: 0, bottom: 20 }}
                 style={{ outline: "none" }}
                 className="ml-[-20px]"
               >
-                <XAxis type="number" stroke="#fff" />
+                <XAxis type="number" stroke="#fff"/>
                 {""}
 
                 <YAxis
@@ -153,7 +154,7 @@ function DashboarTransaction({
                   type="category"
                   stroke="#fff"
                   fontSize={18}
-                  width={90}
+                  width={160}
                 />
                 <Tooltip
                   cursor={{ fill: "transparent" }}
@@ -192,7 +193,6 @@ function DashboarTransaction({
           )}
         </div>
       </div>
-    </div>
   );
 }
 export default DashboarTransaction;
