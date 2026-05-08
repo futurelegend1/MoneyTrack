@@ -18,20 +18,27 @@ import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 import { auth } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
+// import { doc, getDoc } from "firebase/firestore";
+// import { db } from "../../../firebase";
+
+type Profile = {
+  username: string;
+  photoURL: string;
+};
 
 function Sidebar({
   open,
   setOpen,
   setSection,
+  profile,
 }: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSection: React.Dispatch<React.SetStateAction<string>>;
+  profile: Profile;
 }) {
   const [user, setUser] = useState<User | null>(null);
-  const [username, setUsername] = useState<string | null>(null);
+  // const [username, setUsername] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("Dashboard");
   const navigate = useNavigate();
   const defaultPhotoURL =
@@ -41,16 +48,16 @@ function Sidebar({
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if (currentUser) {
-        const fetchUsername = async () => {
-          const userDocRef = doc(db, "users", currentUser.uid);
-          const userDoc = await getDoc(userDocRef);
-          if (userDoc.exists()) {
-            setUsername(userDoc.data().username);
-          }
-        };
-        fetchUsername();
-      }
+      // if (currentUser) {
+      //   const fetchUsername = async () => {
+      //     const userDocRef = doc(db, "users", currentUser.uid);
+      //     const userDoc = await getDoc(userDocRef);
+      //     if (userDoc.exists()) {
+      //       setUsername(userDoc.data().username);
+      //     }
+      //   };
+      //   fetchUsername();
+      // }
     });
     return () => unsubscribe();
   }, []);
@@ -119,15 +126,15 @@ function Sidebar({
       <div className="h-px bg-white/60 my-4"></div>
 
       <div className="flex flex-col items-start gap-2">
-        <button className={menuStyle("Settings")}>
+        <button onClick={() => {setSection("Settings"); setActiveSection("Settings")}} className={menuStyle("Settings")}>
           <Settings size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Settings</h2>}
         </button>
-        <button className={menuStyle("ChatBot")}>
+        <button onClick={() => {setSection("ChatBot"); setActiveSection("ChatBot")}} className={menuStyle("ChatBot")}>
           <MessageCircle size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>ChatBot</h2>}
         </button>
-        <button className={menuStyle("Help")}>
+        <button onClick={() => {setSection("Help"); setActiveSection("Help")}} className={menuStyle("Help")}>
           <HelpCircle size={28} className="text-white shrink-0" />
           {open && <h2 className={menuLableStyle}>Help</h2>}
         </button>
@@ -163,7 +170,7 @@ function Sidebar({
           }
           className="shrink-0 rounded-full w-11 h-11 hover:scale-110 border-2 border-transparent hover:border-emerald-500 transition-all duration-200"
         />
-        {open && <h2 className="text-white font-semibold">{username || user?.displayName ||user?.email}</h2>}
+        {open && <h2 className="text-white font-semibold">{profile.username || user?.displayName ||user?.email}</h2>}
       </div>
     </div>
   );
