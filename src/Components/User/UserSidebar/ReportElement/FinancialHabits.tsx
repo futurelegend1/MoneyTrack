@@ -107,7 +107,7 @@ function FinancialHabits({ transactions }: { transactions: Transactions[] }) {
               }}
             />
             <Bar dataKey="amount" radius={[4, 4, 0, 0]} tabIndex={-1}>
-              {weeklyData.chartData.map((entry, index) => (
+              {weeklyData.chartData.map((_entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={index === currentDayIndex ? "#10b981" : "#556e85"}

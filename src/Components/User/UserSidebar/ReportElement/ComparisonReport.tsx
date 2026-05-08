@@ -186,7 +186,7 @@ function ComparisonReport({ transactions }: { transactions: Transactions[] }) {
                   return `$${Number(val).toLocaleString()}`;
                 }}
               />
-              {chartData.map((entry, index) => (
+              {chartData.map((_entry, index) => (
                 <Cell
                   tabIndex={-1}
                   style={{ outline: "none", border: "none" }}
