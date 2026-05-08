@@ -4,17 +4,33 @@ import Report from "./UserSidebar/Reports";
 import Transactions from "./UserSidebar/Transactions";
 import Saving from "./UserSidebar/Saving";
 import Debt from "./UserSidebar/Debt";
+import Settings from "./UserSidebar/Settings";
+import ChatBot from "./UserSidebar/ChatBot";
+import Help from "./UserSidebar/Help";
 import { PlusCircle } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+
+type Profile = {
+  username: string;
+  photoURL: string;
+};
 
 function UserPanel({
   open,
   section,
   setSection,
+  profile,
+  setProfile,
+  initialProfile,
+  setInitialProfile,
 }: {
   open: boolean;
   section: string;
-  setSection: (section: string) => void;
+  setSection: React.Dispatch<React.SetStateAction<string>>;
+  profile: Profile;
+  setProfile: React.Dispatch<React.SetStateAction<Profile>>;
+  initialProfile: Profile;
+  setInitialProfile: React.Dispatch<React.SetStateAction<Profile>>;
 }) {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [showSavingForm, setShowSavingForm] = useState<boolean>(false);
@@ -74,6 +90,9 @@ function UserPanel({
         {section === "Debt" && (
           <Debt showDebtForm={showDebtForm} setShowDebtForm={setShowDebtForm} />
         )}
+        {section === "Settings" && <Settings profile={profile} setProfile={setProfile} initialProfile={initialProfile} setInitialProfile={setInitialProfile}/>}
+        {section === "ChatBot" && <ChatBot />}
+        {section === "Help" && <Help />}
       </div>
     </div>
   );
